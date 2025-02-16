@@ -29,7 +29,7 @@ def send_email():
         # Create Email Message
         msg = MIMEMultipart()
         msg["From"] = SENDER_EMAIL
-        msg["To"] = RECIPIENTS
+        msg["To"] = ",".join(RECIPIENTS)
         msg["Subject"] = SUBJECT
 
         # HTML Email Body with <table>
