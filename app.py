@@ -1,21 +1,14 @@
 import os
-import smtplib
-import time
-from datetime import datetime
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 
-# SMTP Configuration
-SMTP_SERVER = os.environ["SMTP_SERVER"]
-SMTP_PORT = os.environ["SMTP_PORT"]
-INT_SMTP_PORT = int(SMTP_PORT)
-SMTP_USERNAME = os.environ["SMTP_USERNAME"]
-SMTP_PASSWORD = os.environ["SMTP_PASSWORD"]
-# Email Details
-SENDER_EMAIL = os.environ["SENDER_EMAIL"]
-RECIPIENTS = ["jurica1.migac@gmail.com", "helena.kukec8@gmail.com"]
-SUBJECT = os.environ["EMAIL_SUBJECT"]
+from mailersend import emails
+
+TOKEN = os.environ["TOKEN"]
 EMAIL_TEMPLATE_PATH = os.path.join("static", "email_template.html")
+EMAIL_SUBJECT = os.environ["EMAIL_SUBJECT"]
+SENDER_EMAIL = os.environ["SENDER_EMAIL"]
+RECIPIENTS = os.environ["RECIPIENTS"]
+
+mailer = emails.NewEmail(TOKEN)
 
 
 def get_email_content():
@@ -24,33 +17,27 @@ def get_email_content():
         return html_content
 
 
-def send_email():
-    try:
-        # Create Email Message
-        msg = MIMEMultipart()
-        msg["From"] = SENDER_EMAIL
-        msg["To"] = ",".join(RECIPIENTS)
-        msg["Subject"] = SUBJECT
+mail_body = {}
 
-        # HTML Email Body with <table>
-        html_content = get_email_content()
-        msg.attach(MIMEText(html_content, "html"))
+mail_from = {
+    "name": "Najam Stana",
+    "email": SENDER_EMAIL,
+}
 
-        # Connect to SMTP Server and Send Email
-        server = smtplib.SMTP(SMTP_SERVER, INT_SMTP_PORT)
-        server.ehlo()
-        server.starttls()
-        server.ehlo()
-        server.login(SMTP_USERNAME, SMTP_PASSWORD)
-        server.ehlo()
-        server.sendmail(SENDER_EMAIL, RECIPIENTS, msg.as_string())
-        server.quit()
-
-        print(f"Email sent successfully at {datetime.now()}!")
-
-    except Exception as e:
-        print(f"Failed to send email: {e}")
-
+recipients = [
+    {
+        "name": "Jurica Migač",
+        "email": RECIPIENTS,
+    }
+]
+email_body = get_email_content()
+mailer.set_mail_from(mail_from, mail_body)
+mailer.set_mail_to(recipients, mail_body)
+mailer.set_subject(EMAIL_SUBJECT, mail_body)
+mailer.set_html_content(email_body, mail_body)
 
 if __name__ == "__main__":
-    send_email()
+    try:
+        response = mailer.send(mail_body)
+    except Exception as e:
+        print(f"An error occurred: {e}")
