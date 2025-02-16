@@ -38,8 +38,11 @@ def send_email():
 
         # Connect to SMTP Server and Send Email
         server = smtplib.SMTP(SMTP_SERVER, INT_SMTP_PORT)
+        server.ehlo()
         server.starttls()
+        server.ehlo()
         server.login(SMTP_USERNAME, SMTP_PASSWORD)
+        server.ehlo()
         server.sendmail(SENDER_EMAIL, RECIPIENTS, msg.as_string())
         server.quit()
 
