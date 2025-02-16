@@ -4,7 +4,6 @@ import time
 from datetime import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-
 from croniter import croniter
 
 # SMTP Configuration
@@ -13,12 +12,10 @@ SMTP_PORT = os.environ["SMTP_PORT"]
 INT_SMTP_PORT = int(SMTP_PORT)
 SMTP_USERNAME = os.environ["SMTP_USERNAME"]
 SMTP_PASSWORD = os.environ["SMTP_PASSWORD"]
-
 # Email Details
 SENDER_EMAIL = os.environ["SENDER_EMAIL"]
 RECIPIENTS = os.environ["RECIPIENTS"]
 SUBJECT = os.environ["EMAIL_SUBJECT"]
-
 CRON_EXPRESSION = os.environ["CRON_EXPRESSION"]
 EMAIL_TEMPLATE_PATH = os.path.join("static", "email_template.html")
 

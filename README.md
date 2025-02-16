@@ -6,4 +6,3 @@ Microservice used for sending monthly email reminders to pay a rent for the apar
 
 - Stripo - online generator of email template
 - Platko.eu - online generator platnog barkoda
-
