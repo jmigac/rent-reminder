@@ -15,8 +15,8 @@ jobs:
           with:
             server_address: smtp.mailersend.net
             server_port: 587
-            username: ${{ secrets.SMTP_USERNAME }}
-            password: ${{ secrets.SMTP_PASSWORD }}
+            username: ${{ vars.SMTP_USERNAME }}
+            password: ${{ vars.SMTP_PASSWORD }}
             subject: "PODSJETNIK: Platiti mjesečni najam stana"
             to: ${{ vars.RECIPIENT_EMAIL }}
             from: najam@juricamigac.from.hr
