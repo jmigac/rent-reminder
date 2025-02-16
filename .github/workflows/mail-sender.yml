@@ -20,6 +20,6 @@ jobs:
             subject: "PODSJETNIK: Platiti mjesečni najam stana"
             to: ${{ vars.RECIPIENT_EMAIL }}
             from: najam@juricamigac.from.hr
-            body: ${{ vars.HTML_BODY }}
+            html_body: ${{ vars.HTML_BODY }}
             cc: ${{ vars.CC_EMAIL }}
             priority: normal
