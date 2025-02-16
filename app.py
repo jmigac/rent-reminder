@@ -15,7 +15,6 @@ SMTP_PASSWORD = os.environ["SMTP_PASSWORD"]
 SENDER_EMAIL = os.environ["SENDER_EMAIL"]
 RECIPIENTS = os.environ["RECIPIENTS"]
 SUBJECT = os.environ["EMAIL_SUBJECT"]
-CRON_EXPRESSION = os.environ["CRON_EXPRESSION"]
 EMAIL_TEMPLATE_PATH = os.path.join("static", "email_template.html")
 
 
