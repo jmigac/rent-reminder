@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  python-script-executor:
     runs-on: ubuntu-latest
     env:
       TOKEN: ${{ secrets.TOKEN }}
@@ -14,7 +14,6 @@ jobs:
       RECIPIENT_EMAIL: ${{ vars.RECIPIENT_EMAIL }}
       CC_NAME: ${{ vars.CC_NAME }}
       CC_EMAIL: ${{ vars.CC_EMAIL }}
-      EMAIL_SUBJECT: ${{ vars.EMAIL_SUBJECT }}
       SENDER_EMAIL: ${{ vars.SENDER_EMAIL }}
 
     steps:

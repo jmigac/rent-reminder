@@ -1,0 +1,37 @@
+name: Monthly Email Sender
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+jobs:
+  mail-sender:
+    runs-on: ubuntu-latest
+
+    steps:
+        - name: Send mail
+          uses: betterfor/action-sned-mail@main
+          with:
+            # Reqired mail server address
+            server_address: smtp.mailersend.net
+            # Optional Server port, default 25 (if server_port is 465 this connection use TLS)
+            server_port: 587
+            # Optional (recommended): mail server username
+            username: ${{secrets.SMTP_USERNAME}}
+            # Optional (recommended): mail server password
+            password: ${{secrets.SMTP_PASSWORD}}
+            # Required mail subject
+            subject: "PODSJETNIK: Platiti mjesečni najam stana"
+            # Required recipients address
+            to: ${{ vars.RECIPIENT_EMAIL }}
+            # Required sender full name (address can be skipped)
+            from: Najam Stana # <alice@example.com>
+            # Optional plain body
+            body: Build job of ${{github.repository}} completed successfully!
+            # Optional HTML body read from file
+            html_body: file://static/email_template.html
+            # Optional carbon copy recipients
+            cc: ${{ vars.CC_EMAIL }}
+            # Optional priority: 'high', 'normal' (default) or 'low'
+            priority: normal
