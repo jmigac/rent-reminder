@@ -2,20 +2,19 @@ name: Python Script Workflow
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/10 * * * *"
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      EMAIL_SUBJECT: ${{ vars.EMAIL_SUBJECT }}
-      RECIPIENTS: ${{ vars.EMAIL_SUBJECT }}
+      TOKEN: ${{ secrets.TOKEN }}
+      RECIPIENT_NAME: ${{ }}
+      RECIPIENT_EMAIL: ${{ }}
+      CC_NAME: ${{ }}
+      CC_EMAIL: ${{ }}
       SENDER_EMAIL: ${{ vars.SENDER_EMAIL }}
-      SMTP_PASSWORD: ${{ vars.SMTP_PASSWORD }}
-      SMTP_PORT: ${{ vars.SMTP_PORT }}
-      SMTP_SERVER: ${{ vars.SMTP_SERVER }}
-      SMTP_USERNAME: ${{ vars.SMTP_USERNAME }}
 
     steps:
       - name: Checkout repository content

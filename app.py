@@ -6,7 +6,10 @@ TOKEN = os.environ["TOKEN"]
 EMAIL_TEMPLATE_PATH = os.path.join("static", "email_template.html")
 EMAIL_SUBJECT = os.environ["EMAIL_SUBJECT"]
 SENDER_EMAIL = os.environ["SENDER_EMAIL"]
-RECIPIENTS = os.environ["RECIPIENTS"]
+RECIPIENT_NAME = os.environ["RECIPIENT_NAME"]
+RECIPIENT_EMAIL = os.environ["RECIPIENT_EMAIL"]
+CC_NAME = os.environ["CC_NAME"]
+CC_EMAIL = os.environ["CC_EMAIL"]
 
 mailer = emails.NewEmail(TOKEN)
 
@@ -26,15 +29,23 @@ mail_from = {
 
 recipients = [
     {
-        "name": "Jurica Migač",
-        "email": RECIPIENTS,
+        "name": RECIPIENT_NAME,
+        "email": RECIPIENT_EMAIL,
+    }
+]
+
+cc = [
+    {
+        "name": CC_NAME,
+        "email": CC_EMAIL
     }
 ]
 email_body = get_email_content()
-mailer.set_mail_from(mail_from, mail_body)
-mailer.set_mail_to(recipients, mail_body)
-mailer.set_subject(EMAIL_SUBJECT, mail_body)
-mailer.set_html_content(email_body, mail_body)
+mailer.set_mail_from(mail_from=mail_from, message=mail_body)
+mailer.set_mail_to(mail_to=recipients, message=mail_body)
+mailer.set_cc_recipients(cc_recipient=cc, message=mail_body)
+mailer.set_subject(subject=EMAIL_SUBJECT, message=mail_body)
+mailer.set_html_content(content=email_body, message=mail_body)
 
 if __name__ == "__main__":
     try:
