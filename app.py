@@ -13,7 +13,7 @@ SMTP_USERNAME = os.environ["SMTP_USERNAME"]
 SMTP_PASSWORD = os.environ["SMTP_PASSWORD"]
 # Email Details
 SENDER_EMAIL = os.environ["SENDER_EMAIL"]
-RECIPIENTS = os.environ["RECIPIENTS"]
+RECIPIENTS = ["jurica1.migac@gmail.com", "helena.kukec8@gmail.com"]
 SUBJECT = os.environ["EMAIL_SUBJECT"]
 EMAIL_TEMPLATE_PATH = os.path.join("static", "email_template.html")
 
