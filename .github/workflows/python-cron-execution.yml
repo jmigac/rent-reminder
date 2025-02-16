@@ -9,13 +9,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      EMAIL_SUBJECT: ${{ env.EMAIL_SUBJECT }}
-      RECIPIENTS: ${{ env.EMAIL_SUBJECT }}
-      SENDER_EMAIL: ${{ env.SENDER_EMAIL }}
-      SMTP_PASSWORD: ${{ env.SMTP_PASSWORD }}
-      SMTP_PORT: ${{ env.SMTP_PORT }}
-      SMTP_SERVER: ${{ env.SMTP_SERVER }}
-      SMTP_USERNAME: ${{ env.SMTP_USERNAME }}
+      EMAIL_SUBJECT: ${{ vars.EMAIL_SUBJECT }}
+      RECIPIENTS: ${{ vars.EMAIL_SUBJECT }}
+      SENDER_EMAIL: ${{ vars.SENDER_EMAIL }}
+      SMTP_PASSWORD: ${{ vars.SMTP_PASSWORD }}
+      SMTP_PORT: ${{ vars.SMTP_PORT }}
+      SMTP_SERVER: ${{ vars.SMTP_SERVER }}
+      SMTP_USERNAME: ${{ vars.SMTP_USERNAME }}
 
     steps:
       - name: Checkout repository content
