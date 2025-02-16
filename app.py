@@ -4,7 +4,6 @@ import time
 from datetime import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from croniter import croniter
 
 # SMTP Configuration
 SMTP_SERVER = os.environ["SMTP_SERVER"]
@@ -51,20 +50,5 @@ def send_email():
         print(f"Failed to send email: {e}")
 
 
-def cron_scheduler():
-    base_time = datetime.now()
-    cron = croniter(CRON_EXPRESSION, base_time)
-
-    while True:
-        next_run = cron.get_next(datetime)
-        sleep_time = (next_run - datetime.now()).total_seconds()
-
-        if sleep_time > 0:
-            print(f"Next email scheduled at {next_run}. Sleeping for {sleep_time:.2f} seconds.")
-            time.sleep(sleep_time)
-            send_email()
-
-
 if __name__ == "__main__":
-    cron_scheduler()
-
+    send_email()
