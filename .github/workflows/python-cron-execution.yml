@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TOKEN: ${{ secrets.TOKEN }}
-      RECIPIENT_NAME: ${{ }}
-      RECIPIENT_EMAIL: ${{ }}
-      CC_NAME: ${{ }}
-      CC_EMAIL: ${{ }}
+      RECIPIENT_NAME: ${{ vars.RECIPIENT_NAME }}
+      RECIPIENT_EMAIL: ${{ vars.RECIPIENT_EMAIL }}
+      CC_NAME: ${{ vars.CC_NAME }}
+      CC_EMAIL: ${{ vars.CC_EMAIL }}
       SENDER_EMAIL: ${{ vars.SENDER_EMAIL }}
 
     steps:
