@@ -8,6 +8,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      EMAIL_SUBJECT: ${{ env.EMAIL_SUBJECT }}
+      RECIPIENTS: ${{ env.EMAIL_SUBJECT }}
+      SENDER_EMAIL: ${{ env.SENDER_EMAIL }}
+      SMTP_PASSWORD: ${{ env.SMTP_PASSWORD }}
+      SMTP_PORT: ${{ env.SMTP_PORT }}
+      SMTP_SERVER: ${{ env.SMTP_SERVER }}
+      SMTP_USERNAME: ${{ env.SMTP_USERNAME }}
 
     steps:
       - name: Checkout repository content
@@ -23,14 +31,5 @@ jobs:
         with:
           path: "requirements.txt"
 
-      - name: Add environment variables
-        run: | 
-          echo "EMAIL_SUBJECT={value}" >> "$GITHUB_ENV"
-          echo "RECIPIENTS=${{ env.RECIPIENTS }}" >> "$GITHUB_ENV"
-          echo "SENDER_EMAIL=${{ env.SENDER_EMAIL }}" >> "$GITHUB_ENV"
-          echo "SMTP_PASSWORD=${{ env.SMTP_PASSWORD }}" >> "$GITHUB_ENV"
-          echo "SMTP_PORT=${{ env.SMTP_PORT }}" >> "$GITHUB_ENV"
-          echo "SMTP_SERVER=${{ env.SMTP_SERVER }}" >> "$GITHUB_ENV"
-          echo "SMTP_USERNAME=${{ env.SMTP_USERNAME}}" >> "$GITHUB_ENV"
       - name: Execute Python script # Run the app.py
         run: python app.py
