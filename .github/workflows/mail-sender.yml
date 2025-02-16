@@ -13,23 +13,13 @@ jobs:
         - name: Send mail
           uses: dawidd6/action-send-mail@v4
           with:
-            # Reqired mail server address
             server_address: smtp.mailersend.net
-            # Optional Server port, default 25 (if server_port is 465 this connection use TLS)
             server_port: 587
-            # Optional (recommended): mail server username
-            username: ${{secrets.SMTP_USERNAME}}
-            # Optional (recommended): mail server password
-            password: ${{secrets.SMTP_PASSWORD}}
-            # Required mail subject
+            username: ${{ secrets.SMTP_USERNAME }}
+            password: ${{ secrets.SMTP_PASSWORD }}
             subject: "PODSJETNIK: Platiti mjesečni najam stana"
-            # Required recipients address
             to: ${{ vars.RECIPIENT_EMAIL }}
-            # Required sender full name (address can be skipped)
-            from: najam@juricamigac.from.hr # <alice@example.com>
-            # Optional HTML body read from file
+            from: najam@juricamigac.from.hr
             body: ${{ vars.HTML_BODY }}
-            # Optional carbon copy recipients
             cc: ${{ vars.CC_EMAIL }}
-            # Optional priority: 'high', 'normal' (default) or 'low'
             priority: normal
