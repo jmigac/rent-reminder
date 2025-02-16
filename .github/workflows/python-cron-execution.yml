@@ -23,5 +23,19 @@ jobs:
         with:
           path: "requirements.txt"
 
+      - name: Add email subject environment variables
+        run: echo "{EMAIL_SUBJECT}={value}" >> "$GITHUB_ENV"
+      - name: Add recipients subject environment variables
+        run: echo "{RECIPIENTS}=${{ env.RECIPIENTS }}" >> "$GITHUB_ENV"
+      - name: Add sender email subject environment variables
+        run: echo "{SENDER_EMAIL}=${{ env.SENDER_EMAIL }}" >> "$GITHUB_ENV"
+      - name: Add smtp password subject environment variables
+        run: echo "{SMTP_PASSWORD}=${{ env.SMTP_PASSWORD }}" >> "$GITHUB_ENV"
+      - name: Add smtp port subject environment variables
+        run: echo "{SMTP_PORT}=${{ env.SMTP_PORT }}" >> "$GITHUB_ENV"
+      - name: Add smtp server subject environment variables
+        run: echo "{SMTP_SERVER}=${{ env.SMTP_SERVER }}" >> "$GITHUB_ENV"
+      - name: Add smtp username subject environment variables
+        run: echo "{SMTP_USERNAME}=${{ env.SMTP_USERNAME}}" >> "$GITHUB_ENV"
       - name: Execute Python script # Run the app.py
         run: python app.py
