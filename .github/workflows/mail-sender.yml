@@ -28,7 +28,7 @@ jobs:
             # Required sender full name (address can be skipped)
             from: najam@juricamigac.from.hr # <alice@example.com>
             # Optional HTML body read from file
-            html_body: file://static/email_template.html
+            body: ${{ vars.HTML_BODY }}
             # Optional carbon copy recipients
             cc: ${{ vars.CC_EMAIL }}
             # Optional priority: 'high', 'normal' (default) or 'low'
