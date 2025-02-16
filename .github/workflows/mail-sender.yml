@@ -11,7 +11,7 @@ jobs:
 
     steps:
         - name: Send mail
-          uses: betterfor/action-send-mail@v0.1.1
+          uses: dawidd6/action-send-mail@v4
           with:
             # Reqired mail server address
             server_address: smtp.mailersend.net
@@ -26,9 +26,7 @@ jobs:
             # Required recipients address
             to: ${{ vars.RECIPIENT_EMAIL }}
             # Required sender full name (address can be skipped)
-            from: Najam Stana # <alice@example.com>
-            # Optional plain body
-            body: Build job of ${{github.repository}} completed successfully!
+            from: najam@juricamigac.from.hr # <alice@example.com>
             # Optional HTML body read from file
             html_body: file://static/email_template.html
             # Optional carbon copy recipients
