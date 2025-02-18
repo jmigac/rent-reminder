@@ -1,0 +1,24 @@
+name: Monthly Email Sender
+
+on:
+  schedule:
+    - cron: "0 12 10-12 * *"
+  workflow_dispatch:
+
+jobs:
+  mail-sender:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Send mail
+          uses: dawidd6/action-send-mail@v4
+          with:
+            server_address: ${{ secrets.SMTP_HOST }}
+            server_port: ${{ secrets.SMTP_PORT }}
+            username: ${{ secrets.SMTP_USERNAME }}
+            password: ${{ secrets.SMTP_PASSWORD }}
+            subject: "PODSJETNIK: Platiti mjesečni najam stana"
+            to: ${{ vars.RECIPIENT_EMAIL }}
+            from: ${{ vars.SENDER_EMAIL }}
+            html_body: ${{ vars.HTML_BODY }}
+            cc: ${{ vars.CC_EMAIL }}
+            priority: normal
