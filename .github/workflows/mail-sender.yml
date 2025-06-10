@@ -20,5 +20,4 @@ jobs:
             to: ${{ vars.RECIPIENT_EMAIL }}
             from: ${{ vars.SENDER_EMAIL }}
             html_body: ${{ vars.HTML_BODY }}
-            cc: ${{ vars.CC_EMAIL }}
             priority: normal
